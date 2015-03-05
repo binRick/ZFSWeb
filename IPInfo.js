@@ -1,6 +1,12 @@
 #!/usr/bin/env node
 
-var request = require('request'),
+var psnode = require('ps-node');
+
+
+var ps = require('ps');
+var procfs = require('procfs-stats'),
+
+    request = require('request'),
     os = require('os'),
     netstat = require('netstat'),
     pretty = require('prettyjson'),
@@ -50,7 +56,19 @@ module.exports.query = function(Setup, meCB) {
                 n.ChildProcesses = children.map(function(p) {
                     return p.PID;
                 });
-                cb(err, n);
+                async.map(n.ChildProcesses, function(CP, cpCB) {
+                    ps.lookup({
+                        pid: CP
+                    }, function(e, proc) {
+                        cpCB(e, {
+                            pid: CP,
+                            proc: proc
+                        });
+                    });
+                }, function(e, Children) {
+                    n.ChildProcesses = Children;
+                    cb(err, n);
+                });
             });
         }, function(e, Connections) {
             if (e) throw e;

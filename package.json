@@ -1,0 +1,27 @@
+{
+  "name": "ZFSWeb",
+  "version": "0.0.0",
+  "description": "Realtime ZFS Snapshot Reporting",
+  "main": "CurrentZFSSnapshotTransfer.js",
+  "dependencies": {
+    "multimeter": "~0.1.1",
+    "cli-clear": "~1.0.2",
+    "async": "~0.9.0",
+    "terminal-menu": "~2.1.1",
+    "charm": "~1.0.0",
+    "trim": "0.0.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/binRick/ZFSWeb"
+  },
+  "author": "",
+  "license": "BSD",
+  "bugs": {
+    "url": "https://github.com/binRick/ZFSWeb/issues"
+  }
+}
