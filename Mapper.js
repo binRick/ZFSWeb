@@ -8,6 +8,8 @@ var _ = require('underscore'),
 
 
 module.exports.Mapper = function(Connections, cb) {
+
+
     Connections = Connections.filter(function(Conn) {
         return Conn.ChildProcesses.length == 1;
     }).map(function(Conn) {
@@ -20,19 +22,19 @@ module.exports.Mapper = function(Connections, cb) {
 
         ConnLocal = Conn.Local.Host + ':' + Conn.Local.Port;
         ConnRemote = Conn.Remote.Host + ':' + Conn.Remote.Port;
-        a
+        console.log(Conn);
         Conn.NetworkConnection = {
             ConnectionProgram: 'sshd',
             ConnectionPID: 0000,
             ActoveConnections: {
-
-                Protocol: tcp,
-                Local: Conn.Local,
+                Protocol: 'tcp',
+                Local: {
+                    Host: Conn.Local.Host,
+                    Port: Conn.Local.Port,
+                },
                 Remote: {
-                    Host: Conn.Remote,
-                    Port: {
-                        Conn.Remoe.Port
-                    }
+                    Host: Conn.Remote.Host,
+                    Port: Conn.Remote.Port,
                 }
             }
         };
